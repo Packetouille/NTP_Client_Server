@@ -84,9 +84,6 @@ public class NTPClient
 			((msg.receiveTimestamp - msg.originateTimestamp) +
 			(msg.transmitTimestamp - destinationTimestamp)) / 2;
 		
-		System.out.println("Time server took to process request= " + (msg.transmitTimestamp - msg.receiveTimestamp));
-		System.out.println("One way delay for server to receive the request= " + (msg.receiveTimestamp - msg.originateTimestamp));
-		
 		// Display response
 		System.out.println("NTP server: " + serverName);
 		System.out.println(msg.toString());
@@ -99,6 +96,9 @@ public class NTPClient
 		
 		System.out.println("Local clock offset: " +
 			new DecimalFormat("0.00").format(localClockOffset*1000) + " ms");
+
+		System.out.println("Time server took to process request= " + (msg.transmitTimestamp - msg.receiveTimestamp));
+		System.out.println("One way delay for server to receive the request= " + (msg.receiveTimestamp - msg.originateTimestamp));
 		
 		socket.close();
 	}
