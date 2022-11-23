@@ -24,8 +24,7 @@ public class UDPServerThreads22 {
     public void run() {   
      byte[] sendData=new byte[1024];
      try{
-      String threadName =
-      Thread.currentThread().getName();
+      String threadName = Thread.currentThread().getName();
       String message="in HandleClient";
       System.out.format("%s: %s%n", threadName, message); //in thread run()
       String capitalizedSentence=new String(sentence.toUpperCase());

@@ -35,7 +35,8 @@ public class NTPServer {
         NTPSocket = new DatagramSocket(NTPPort);
                                 
         while(true){           
-            NTPSocket.receive(NTPPacket);      
+            NTPSocket.receive(NTPPacket); 
+            System.out.println("HELLLLOOOOOOO");     
     
     
 //        if(NTPPacket.getPort() == NTPPort)   
@@ -148,6 +149,7 @@ public class NTPServer {
         // TODO: Add your code here  
 //      try  
 //      {  
+            
             new NTPServer();  
 //       }  
 //      catch(Exception e)  {};  

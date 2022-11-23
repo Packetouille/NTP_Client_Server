@@ -3,7 +3,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.text.DecimalFormat;
-import NtpMessagePack.NtpMessage;
 
 /**
  * NtpClient - an NTP client for Java.  This program connects to an NTP server
@@ -48,7 +47,8 @@ public class NTPClient
 			return;
 		}
 		*/
-		serverName="pool.ntp.org";
+		serverName="localhost";
+		//serverName="pool.ntp.org";
 		// Send request
 		DatagramSocket socket = new DatagramSocket();
 		InetAddress address = InetAddress.getByName(serverName);
