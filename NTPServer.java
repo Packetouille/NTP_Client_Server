@@ -4,7 +4,7 @@ import java.util.*;
 import java.lang.*;  
     
 public class NTPServer {      
-    private int NTPPort = 1000;  
+    private int NTPPort = 123;  
     private byte[] NTPData = new byte[48];      
 //   byte[] NTPData2;   
         private long seventyOffset;    //offset (in ms) between 1900 and 1970  
@@ -35,8 +35,7 @@ public class NTPServer {
         NTPSocket = new DatagramSocket(NTPPort);
                                 
         while(true){           
-            NTPSocket.receive(NTPPacket); 
-            System.out.println("HELLLLOOOOOOO");     
+            NTPSocket.receive(NTPPacket);      
     
     
 //        if(NTPPacket.getPort() == NTPPort)   
@@ -149,8 +148,8 @@ public class NTPServer {
         // TODO: Add your code here  
 //      try  
 //      {  
-            
-            new NTPServer();  
+            //Thread myThread = new Thread();
+            new NTPServer();
 //       }  
 //      catch(Exception e)  {};  
     }     

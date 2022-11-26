@@ -47,8 +47,8 @@ public class NTPClient
 			return;
 		}
 		*/
-		serverName="localhost";
-		//serverName="pool.ntp.org";
+		//serverName="localhost";
+		serverName="pool.ntp.org";
 		// Send request
 		DatagramSocket socket = new DatagramSocket();
 		InetAddress address = InetAddress.getByName(serverName);
@@ -97,8 +97,8 @@ public class NTPClient
 		System.out.println("Local clock offset: " +
 			new DecimalFormat("0.00").format(localClockOffset*1000) + " ms");
 
-		System.out.println("Time server took to process request= " + (msg.transmitTimestamp - msg.receiveTimestamp));
-		System.out.println("One way delay for server to receive the request= " + (msg.receiveTimestamp - msg.originateTimestamp));
+		System.out.printf("Time server took to process request= %.2f ms\n", (msg.transmitTimestamp - msg.receiveTimestamp));
+		System.out.printf("One way delay for server to receive the request= %.2f ms", (msg.receiveTimestamp - msg.originateTimestamp));
 		
 		socket.close();
 	}
