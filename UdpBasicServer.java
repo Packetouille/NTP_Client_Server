@@ -14,13 +14,14 @@ public class UdpBasicServer {
                 serverSocket.receive(packetToReceive);
                 String dataStr = new String(packetToReceive.getData());
                 System.out.printf("Packet received from %s:%d, content: %s\n", packetToReceive.getAddress().getHostAddress(), packetToReceive.getPort(), dataStr);
-
                 packetToSend.setAddress(packetToReceive.getAddress());
                 packetToSend.setPort(packetToReceive.getPort());
                 packetToSend.setData(packetToReceive.getData());
 
                 serverSocket.send(packetToSend);
             }
+
+            serverSocket.close();
         } catch (SocketException e){
             e.printStackTrace();
         } catch (UnknownHostException e){

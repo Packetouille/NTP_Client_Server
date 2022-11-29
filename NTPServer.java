@@ -6,7 +6,7 @@ import java.lang.*;
 public class NTPServer {      
     private int NTPPort = 32000;  
     private byte[] NTPData = new byte[48];      
-//   byte[] NTPData2;   
+    // byte[] NTPData2;   
     private long seventyOffset;    //offset (in ms) between 1900 and 1970  
     private long transmitMillis;  
     
@@ -18,9 +18,10 @@ public class NTPServer {
     private long transmitTimestamp;  
               
     private DatagramPacket NTPPacket;  
-    private DatagramSocket NTPSocket;  
+    private DatagramSocket NTPSocket;
+    public static int count = 0;
         
-    public NTPServer(){  
+    public NTPServer() {  
         try {  
             System.out.println("Server started!");
                             
@@ -34,20 +35,22 @@ public class NTPServer {
             NTPPacket = new DatagramPacket(NTPData,NTPData.length);  
             NTPSocket = new DatagramSocket(NTPPort);
 
-            int count = 0;
-
             while(true){       
-                Thread myThread = new Thread();    
-                NTPSocket.receive(NTPPacket);
-                String rcvd = "from address:" + NTPPacket.getAddress() + ",port:" + NTPPacket.getPort();  
-                System.out.println(rcvd);                
+                System.out.println("I'm back here!!!!");
+                Thread myThread = new Thread();
                 System.out.println("Thread: " + myThread.getName() + " | " + count);
+                NTPSocket.receive(NTPPacket);
+                System.out.println("I'm stuck here!!!");
+                String rcvd = "from address:" + NTPPacket.getAddress() + ",port:" + NTPPacket.getPort();  
+                System.out.println(rcvd);
                 NTPData = NTPPacket.getData();   
                 transmitTimestamp = toLong(transmitOffset);                  
                 initPacket();  
                 DatagramPacket echo = new DatagramPacket(NTPData,NTPData.length,NTPPacket.getAddress(),NTPPacket.getPort());  
+                
                 NTPSocket.send(echo);
-                count++;  
+                count++;
+                System.out.println("I'm Here!!!!!!");
             }
         } catch (SocketException e) {  
             System.err.println("Can't open socket");  
@@ -56,7 +59,48 @@ public class NTPServer {
             System.err.println("Communication error!");  
             e.printStackTrace();  
         }  
-    }   
+    }
+
+    // public class UDPServerThreads22 {
+    //     public class UDPClientHandler1 implements Runnable {
+    //         DatagramSocket ds;
+    //         String sentence;
+    //         InetAddress address;
+    //         int port;
+    //         long cstarttime;
+    //         long cendtime;
+         
+    //         public UDPClientHandler1(DatagramSocket ds, String sentence, InetAddress address, int port, long cstarttime) {
+    //             this.ds = ds;
+    //             this.sentence = sentence;
+    //             this.address = address;
+    //             this.port = port;
+    //             this.cstarttime = cstarttime;
+    //         }
+       
+    //         public void run() {   
+    //             byte[] sendData=new byte[1024];
+    //             try{
+    //                 String threadName = Thread.currentThread().getName();
+    //                 String message = "in HandleClient";
+    //                 System.out.format("%s: %s%n", threadName, message); //in thread run()
+    //                 String capitalizedSentence = new String(sentence.toUpperCase());
+    //                     sendData=capitalizedSentence.getBytes();
+    //                 DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, address, port);
+    //                 ds.send(sendPacket);
+    //                 System.out.println("in thread after send data to client");
+    //                 System.out.println("IPAddress="+address+" port="+port);
+    //                 long cendtime = System.currentTimeMillis();
+    //                 System.out.println("time="+(cendtime-cstarttime));
+    //             }catch (IOException e) {}
+    //         }
+    //     }
+
+    //     public void nonStatic(DatagramSocket ds, String udpmessage, InetAddress address, int port, long stime) {
+    //         Thread t = new Thread(new UDPClientHandler1(ds,udpmessage,address,port,stime));
+    //         t.start();  
+    //     }
+    // }
     
     private void setOrigTime() {  
         toBytes(transmitTimestamp,originateOffset);             
@@ -127,12 +171,8 @@ public class NTPServer {
         } catch (Exception e) {}  
     }              
     public static void main(String[] args) throws SocketException {  
-        // TODO: Add your code here 
-//      try  
-//      {  
-            //Thread myThread = new Thread();
+        // TODO: Add your code here         
+
         new NTPServer();
-//       }  
-//      catch(Exception e)  {};  
-    }     
+    }    
 }  

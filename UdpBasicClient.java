@@ -26,7 +26,7 @@ public class UdpBasicClient {
                 DatagramPacket receivePacket = new DatagramPacket(buffer, buffer.length);
 
                 clientSocket.receive(receivePacket);
-                System.out.println("Echo back" + new String(receivePacket.getData()));
+                System.out.println("Echo back " + new String(receivePacket.getData()));
             }
         } catch (UnknownHostException e){
             e.printStackTrace();

@@ -32,8 +32,7 @@ import java.text.DecimalFormat;
  */
 public class NTPClient
 {
-	public static void main(String[] args) throws IOException{
-
+	public static void main(String[] args) throws IOException {
 		String serverName;
 		/*
 		// Process command-line args
@@ -98,7 +97,6 @@ public class NTPClient
 
 		System.out.printf("Time server took to process request= %.2f ms\n", (msg.transmitTimestamp - msg.receiveTimestamp));
 		System.out.printf("One way delay for server to receive the request= %.2f ms", (msg.receiveTimestamp - msg.originateTimestamp));
-		
 		socket.close();
 	}
 	
